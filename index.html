@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính số ngày trong tháng</title>
+    <script>
+        function calculateDays() {
+            // Lấy giá trị tháng và năm từ các trường input
+            var month = parseInt(document.getElementById("month").value);
+            var year = parseInt(document.getElementById("year").value);
+            var days;
+
+            // Kiểm tra tính hợp lệ của tháng và năm
+            if (month < 1 || month > 12) {
+                document.getElementById("result").innerText = "Tháng không hợp lệ. Vui lòng nhập tháng từ 1 đến 12.";
+                return;
+            }
+
+            // Tính số ngày của tháng
+            if (month === 2) {
+                // Kiểm tra năm nhuận
+                if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+                    days = 29; // Năm nhuận
+                } else {
+                    days = 28; // Năm không nhuận
+                }
+            } else if (month === 4 || month === 6 || month === 9 || month === 11) {
+                days = 30; // Các tháng có 30 ngày
+            } else {
+                days = 31; // Các tháng còn lại có 31 ngày
+            }
+
+            // Hiển thị kết quả
+            document.getElementById("result").innerText = "Tháng " + month + " năm " + year + " có " + days + " ngày.";
+        }
+    </script>
+</head>
+<body>
+    <h1>Tính số ngày trong tháng</h1>
+    <label for="month">Tháng (1-12):</label>
+    <input type="number" id="month" min="1" max="12"><br><br>
+    
+    <label for="year">Năm:</label>
+    <input type="number" id="year"><br><br>
+    
+    <button onclick="calculateDays()">Tính số ngày</button>
+
+    <h2 id="result"></h2>
+</body>
+</html>
+
+
+
